@@ -22,4 +22,4 @@ flask db migrate -m "any message here"
 python app.py
 ```
 ## Contributing
-As a newbie , any suggestions regarding the code or regarding writing readme is welcome.
+As a newbie , any suggestions regarding the code or regarding writing readme are welcome.
