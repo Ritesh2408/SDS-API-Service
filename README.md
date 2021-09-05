@@ -32,7 +32,7 @@ python app.py
   ![](/images/Add.png)
   
   ## Editing Student's Info
-  ![GitHub Logo](/images/Update.png)
+  ![](/images/Update.png)
   
 ## Contributing
 As a newbie , any suggestions regarding the code or regarding writing readme are welcome.
