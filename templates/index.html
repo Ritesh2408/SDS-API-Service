@@ -1,0 +1,198 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<div class="container">
+  <div class="row">
+    <div class="col md-12">
+
+      <div class="jumbotron p-3">
+
+        <h2>Manage <b>Students </b> <hr><button type="button" class="btn btn-success float-right" data-bs-toggle="modal" data-bs-target="#mymodal">Add Student</button> </h2>
+
+
+        {% with messages = get_flashed_messages() %}
+
+        {% if messages %}
+
+        {% for message in messages %}
+
+        <div class="alert alert-success alert-dismissable fade show" role="alert">
+
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close"></button>
+
+
+          {{message}}
+
+
+        </div>
+
+
+        {% endfor %}
+
+        {% endif %}
+        {% endwith %}
+
+        <hr>
+        <table class="table table-hover table-dark">
+
+          <tr>
+
+            <th>ID</th>
+            <th>Name</th>
+            <th>MIS</th>
+            <th>Email</th>
+            <th>Action</th>
+
+          </tr>
+
+          {% for row in students %}
+          <tr>
+            <td>{{row.id}}</td>
+            <td>{{row.name}}</td>
+            <td>{{row.email}}</td>
+            <td>{{row.mis}}</td>
+
+            <td>
+              <a href="/update/{{row.id}}" class="btn btn-warning btn-xs" data-bs-toggle="modal" data-bs-target="#modaledit{{row.id}}">Edit</a>
+              <a href="/delete/{{row.id}}" class="btn btn-danger btn-xs" onclick="return confirm('Are You Sure To Delete ?')">Delete</a>
+            </td>
+          </tr>
+          <div id="modaledit{{row.id}}" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+
+              <div class="modal-content">
+
+
+                <div class="modal-header">
+
+
+                  <h4 class="modal-title">Update Information</h4>
+
+
+                </div>
+
+
+                <div class="modal-body">
+
+
+                  <form action="{{url_for('update')}}" method="POST">
+
+
+                    <div class="form-group">
+
+
+                      <label>Name:</label>
+                      <input type="hidden" name="id" value="{{row.id}}">
+
+                      <input type="text" class="form-control" name="name" value="{{row.name}}">
+
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+
+                      <label>Email:</label>
+
+                      <input type="text" class="form-control" name="email" value="{{row.email}}">
+
+
+                    </div>
+
+
+                    <div class="form-group">
+
+
+                      <label>MIS:</label>
+
+                      <input type="text" class="form-control" name="mis" value="{{row.mis}}">
+
+
+                    </div>
+
+
+                    <div class="form-group">
+
+
+                      <button class="btn btn-primary" type="submit">Update</button>
+                    </div>
+                  </form>
+                </div>
+
+
+                <div class="modal-footer">
+
+
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+
+                </div>
+
+
+              </div>
+
+
+            </div>
+
+          </div>
+
+
+          {% endfor %}
+
+
+        </table>
+
+
+      </div>
+
+      <div id="mymodal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+
+              <h4 class="modal-title">Add Student</h4>
+            </div>
+            <div class="modal-body">
+
+              <form action="{{url_for('insert')}}" method="POST">
+
+
+                <div class="form-group">
+
+                  <label>Name:</label>
+                  <input type="text" class="form-control" name="name" required="1">
+
+
+                </div>
+
+
+                <div class="form-group">
+
+
+                  <label>Email:</label>
+                  <input type="email" class="form-control" name="email" required="1">
+                </div>
+                <div class="form-group">
+                  <label>MIS:</label>
+                  <input type="number" class="form-control" name="mis" required="1">
+                </div>
+                <div class="form-group">
+                  <button class="btn btn-primary" type="submit">Add Student</button>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
