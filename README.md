@@ -24,15 +24,6 @@ flask db migrate -m "any message here"
 ```bash
 python app.py
 ```
-## This is how it looks: 
-  ## Homepage
-  ![](/images/Homepage.png)
-  
-  ## Adding Student
-  ![](/images/Add.png)
-  
-  ## Editing Student's Info
-  ![](/images/Update.png)
-  
+
 ## Contributing
 As a newbie , any suggestions regarding the code or regarding writing readme are welcome.
